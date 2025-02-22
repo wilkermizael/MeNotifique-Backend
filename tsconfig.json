@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "outDir": "dist",
+      "esModuleInterop": true,
+      "module": "CommonJS",
+      "moduleResolution": "Node",
+      "baseUrl": ".",
+      "paths": {
+        "@/*": [
+          "./src/*"
+        ]
+      },
+      "typeRoots": ["./node_modules/@types", "./types"],
+      "types": ["node"]
+    },
+    "ts-node": {
+      "esm": true
+    },
+  }

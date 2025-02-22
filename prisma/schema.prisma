@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Owner {
+  id       Int     @id @default(autoincrement())
+  user     String  @unique
+  password String
+  token    String  @default(uuid())
+  owner    Boolean @default(true)
+
+  @@map("owners")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  user     String @unique
+  password String
+  token    String @default(uuid())
+
+  @@map("users")
+}
+
+model Class {
+  id          Int          @id @default(autoincrement())
+  nameClass   String
+  turn        String
+  year        String
+  students    Student[]
+  attendances Attendance[]
+  logbook     LogBook[]
+
+  @@map("classes")
+}
+
+model Student {
+  id                Int          @id @default(autoincrement())
+  id_class          Int
+  name_student      String
+  name_responsible  String
+  phone_responsible String
+  img_student       String?
+  qtd_faults        Int
+  class             Class        @relation(fields: [id_class], references: [id])
+  attendances       Attendance[]
+  logbook           LogBook[]
+
+  @@map("students")
+}
+
+model Attendance {
+  id                Int      @id @default(autoincrement())
+  id_class          Int
+  id_student        Int
+  is_present        Boolean
+  date_call         DateTime @default(now()) // Adiciona um valor padrão para registrar a data automaticamente
+  send_notification Boolean  @default(false) // Indica se a notificação foi enviada
+
+  // Relacionamentos
+  class   Class   @relation(fields: [id_class], references: [id])
+  student Student @relation(fields: [id_student], references: [id])
+
+  @@map("attendances") // Nome correto da tabela no banco
+}
+
+model LogBook {
+  id           Int      @id @default(autoincrement())
+  id_class     Int
+  id_student   Int
+  note         String
+  date_note    DateTime
+  demand       String
+  profissional String
+  class        Class    @relation(fields: [id_class], references: [id])
+  student      Student  @relation(fields: [id_student], references: [id])
+
+  @@map("logbook")
+}
