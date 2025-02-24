@@ -79,24 +79,24 @@ export async function getStudentByIdClass(
 //     }
 // }
 export async function updateStudent(
-    req: MulterRequest,
+    req: Request | MulterRequest,
     res: Response,
     next: NextFunction
 ) {
     try {
         const id = Number(req.params.id);
-
+        const { id_class, name_student, name_responsible, phone_responsible, qtd_faults } = req.body;
+        const img_student = req.file ? req.file.path : undefined;
         // Parse manual para o objeto infoStudent
         const infoStudent: StudentWhitoutId = {
-            id_class: Number(req.body.id_class),
-            name_student: req.body.name_student,
-            name_responsible: req.body.name_responsible,
-            phone_responsible: req.body.phone_responsible,
-            qtd_faults: Number(req.body.qtd_faults),
-            img_student: req.file ? `/uploads/${req.file.filename}` : req.body.img_student,
+            id_class: Number(id_class),
+            name_student: name_student,
+            name_responsible: name_responsible,
+            phone_responsible: phone_responsible,
+            qtd_faults: Number(qtd_faults),
+            img_student: req.file ? `/uploads/${req.file.filename}` : img_student,
         };
 
-        console.log("infoStudent (parseado):", infoStudent);
 
         const response = await studentService.updateStudent({ id, infoStudent });
         res.status(httpStatus.OK).json({ results: response });

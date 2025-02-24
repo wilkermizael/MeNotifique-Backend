@@ -32,7 +32,6 @@ async function getStudentByIdClass(id_class: number) {
   
 }
 async function updateStudent({ id, infoStudent}: { id: number; infoStudent: StudentWhitoutId}) {
-    console.log("Dados recebidos para atualização:", infoStudent);
     if (!infoStudent.id_class || !infoStudent.name_student) {
       throw new Error("Dados obrigatórios faltando.");
     }

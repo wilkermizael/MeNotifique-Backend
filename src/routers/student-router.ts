@@ -13,11 +13,11 @@ import { Router } from "express";
 const studentRouter = Router();
 
 studentRouter.post("/",upload.single('img_student'), registerStudentController);
-studentRouter.get('/',getStudent)
+studentRouter.get('/',getStudent)//Rota nao usada
 studentRouter.get('/:id', getStudentByIdClass)
-studentRouter.put('/:id', updateStudent)
+studentRouter.put('/:id', upload.single('img_student'), updateStudent)
 studentRouter.delete('/:id', deleteStudentById)
-studentRouter.post('/whats', sendMessageController)
+studentRouter.post('/whats', sendMessageController)//Envio de mensagem para o WhatsApp
 
 
 //url:https://evolution.winikii.com/message/sendText/Salaobel
