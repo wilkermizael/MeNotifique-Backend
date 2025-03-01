@@ -1,6 +1,6 @@
 
 import { cannotFindStudents } from '@/errors';
-import { StudentWhitoutId } from '@/protocols';
+import { NewStudentProtocols, StudentWhitoutId } from '@/protocols';
 import { studentService } from '@/services';
 import { Request, Response, NextFunction } from 'express';
 import httpStatus from 'http-status';
@@ -56,28 +56,7 @@ export async function getStudentByIdClass(
         next(error)
     }
 }
-// export async function updateStudent(
-//     req: MulterRequest,
-//     res: Response,
-//     next: NextFunction
-// ){
-//     try{
-//         const id = Number(req.params.id)
-//         const infoStudent : StudentWhitoutId = req.body
-//         const imgPath = req.file ? `/uploads/${req.file.filename}` : null;
-//         console.log("===== Requisição Recebida =====");
-//         console.log("ID:", id);
-//         console.log("Headers:", req.headers);
-//         console.log("Body (infoStudent):", infoStudent);
-//         console.log("Arquivo (req.file):", req.file);
-//         console.log("Caminho da Imagem (imgPath):", imgPath);
-//         console.log("===============================");
-//         const response = await studentService.updateStudent({id, infoStudent, imgPath})
-//         res.status(httpStatus.OK).json({results:response})
-//     }catch(error){
-//         next(error)
-//     }
-// }
+
 export async function updateStudent(
     req: Request | MulterRequest,
     res: Response,
@@ -88,7 +67,7 @@ export async function updateStudent(
         const { id_class, name_student, name_responsible, phone_responsible, qtd_faults } = req.body;
         const img_student = req.file ? req.file.path : undefined;
         // Parse manual para o objeto infoStudent
-        const infoStudent: StudentWhitoutId = {
+        const infoStudent: NewStudentProtocols = {
             id_class: Number(id_class),
             name_student: name_student,
             name_responsible: name_responsible,
@@ -119,19 +98,4 @@ export async function deleteStudentById(
         next(error)
     }
     
-}
-export async function sendMessageController(req: Request, res:Response):Promise<void> {
-    const { phoneNumber, message} = req.body;
-
-    if (!phoneNumber || !message) {
-        res.status(httpStatus.BAD_REQUEST).json({ message: "Número de telefone e mensagem são obrigatórios." });
-    }
-
-    try {
-        const response = await studentService.sendMessage(phoneNumber, message);
-        res.status(httpStatus.OK).json(response.data);
-    } catch (error) {
-        console.error('Erro ao enviar mensagem:', error.response?.data || error.message);
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Erro ao enviar mensagem.', error: error.response?.data });
-    }
 }

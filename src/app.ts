@@ -2,7 +2,7 @@ import "express-async-errors";
 import express, { Express,Request, Response } from "express";
 import cors from "cors";
 import { connectDb, disconnectDB, loadEnv } from "./config";
-import { classRouter, studentRouter, usersRouter } from "./routers";
+import { attendanceRouter, bookRouter, classRouter, studentRouter, usersRouter } from "./routers";
 import { handleApplicationErrors } from "./middlewares";
 import path from 'path';
 
@@ -16,11 +16,10 @@ app
   .use("/users", usersRouter)
   .use("/class", classRouter)
   .use("/student",studentRouter)
+  .use('/attendance', attendanceRouter)
+  .use('/logbook', bookRouter)
   .use(handleApplicationErrors)
   .use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
-
-  //.use("/games", gamesRouter)
-  //.use("/bet", betRouter)
   
 
 export function init(): Promise<Express> {

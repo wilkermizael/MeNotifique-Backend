@@ -1,3 +1,5 @@
 export * from './user-repository'
 export  * from './class-repository'
 export * from './student-repository'
+export * from './attendance-repository'
+export * from './logbook-repository'

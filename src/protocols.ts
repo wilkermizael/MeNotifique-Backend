@@ -35,6 +35,7 @@ export type CreateClassWihoutId = {
 };
 export type Student = {
   id: number;
+  id_student: number;
   id_class: number;
   name_student: string;
   img_student?: string;
@@ -42,4 +43,32 @@ export type Student = {
   phone_responsible: string;
   qtd_faults: number;
 };
+export type NewStudentProtocols = Omit<StudentWhitoutId, "id_student"> 
 export type StudentWhitoutId = Omit<Student, "id">
+export type PresentStudent = Student & {
+  is_present: boolean;
+};
+export type Attendance = {
+  id: number;
+  id_class: number;
+  id_student: number;
+  is_present: boolean;
+  date_call: Date | null;
+  send_notification: boolean 
+}
+
+export type AttendanceWithoutId = Omit<Attendance, "id">
+
+export type FaultStudent = {
+  id_student: number;
+  qtd_faults: number;
+}
+
+export type LogBookType = {
+  id_class: number,
+  id_student: number,
+  note: string,
+  date_note: Date,
+  demand: string,
+  profissional: string
+}

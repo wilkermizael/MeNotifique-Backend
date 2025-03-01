@@ -1,5 +1,5 @@
 import { prisma } from "@/config";
-import { StudentWhitoutId } from "@/protocols";
+import { NewStudentProtocols, StudentWhitoutId } from "@/protocols";
 import { studentRepository } from "@/repositories";
 import { Student } from "@prisma/client";
 import { AxiosResponse } from "axios";
@@ -7,7 +7,7 @@ import path from "path";
 import fs from "fs";
 
 export async function createRegisterStudent(
-  infoStudent: StudentWhitoutId,
+  infoStudent: NewStudentProtocols,
   imgPath: string
 ): Promise<Student> {
   const createClass = await studentRepository.createStudent(
@@ -31,7 +31,7 @@ export async function updateStudent({
   infoStudent,
 }: {
   id: number;
-  infoStudent: StudentWhitoutId;
+  infoStudent: NewStudentProtocols;
 }): Promise<Student> {
   if (!infoStudent.id_class || !infoStudent.name_student) {
     throw new Error("Dados obrigatórios faltando.");
@@ -57,11 +57,10 @@ export async function updateStudent({
       "uploads",
       sanitizedImageName
     );
-    console.log("Caminho da imagem antiga:", oldImagePath);
-
+ 
     if (fs.existsSync(oldImagePath)) {
       fs.unlinkSync(oldImagePath); // Apaga a imagem antiga
-      console.log(`Imagem antiga apagada: ${oldImagePath}`);
+     
     } else {
       console.warn(`Imagem antiga não encontrada: ${oldImagePath}`);
     }
@@ -74,19 +73,11 @@ export async function deleteStudent(id: number): Promise<Student> {
   const promise = await studentRepository.deleteStudent(id);
   return promise;
 }
-export async function sendMessage(
-  phoneNumber: string,
-  message: string
-): Promise<AxiosResponse> {
-  const send = await studentRepository.sendMessage(phoneNumber, message);
-  console.log(send);
-  return send;
-}
+
 export const studentService = {
   createRegisterStudent,
   getStudents,
   getStudentByIdClass,
   updateStudent,
   deleteStudent,
-  sendMessage,
 };

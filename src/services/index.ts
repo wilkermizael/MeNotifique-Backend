@@ -1,3 +1,5 @@
 export * from './user-service'
 export * from './class-service'
 export * from './student-service'
+export * from './attendance-service'
+export * from './logbook-service'

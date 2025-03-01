@@ -4,7 +4,7 @@ import {
     getStudent, 
     registerStudentController, 
     updateStudent,
-    sendMessageController} from "@/controllers";
+    } from "@/controllers";
 import { validateBody } from "@/middlewares";
 import { createStudentSchema } from "@/schemas";
 import upload from "@/middlewares/multer";
@@ -17,7 +17,7 @@ studentRouter.get('/',getStudent)//Rota nao usada
 studentRouter.get('/:id', getStudentByIdClass)
 studentRouter.put('/:id', upload.single('img_student'), updateStudent)
 studentRouter.delete('/:id', deleteStudentById)
-studentRouter.post('/whats', sendMessageController)//Envio de mensagem para o WhatsApp
+//studentRouter.post('/whats', sendMessageController)//Envio de mensagem para o WhatsApp
 
 
 //url:https://evolution.winikii.com/message/sendText/Salaobel
