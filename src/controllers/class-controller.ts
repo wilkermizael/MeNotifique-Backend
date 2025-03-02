@@ -75,7 +75,8 @@ export async function deleteClassController(
   res: Response,
   next: NextFunction
 ): Promise<void> {
-  try{const id = Number(req.params.id);
+  try{
+  const id = Number(req.params.id);
   await classService.deleteClass(id)
   res.status(httpStatus.ACCEPTED).json("Turma deletada permanentemente")
 }catch(error){

@@ -35,14 +35,11 @@ async function createClass({nameClass, turn, year}:CreateClassWihoutId) {
 
     async function deleteClass(id:number ) {
     const existingClass = await prisma.class.findUnique({ where: { id } });
-    
+    console.log(existingClass)
     if (!existingClass) {
         throw new Error("Turma não encontrada");
     }
-
-    return prisma.class.delete({
-        where: { id },
-    });
+    return await prisma.class.delete({ where: { id } });
 }
 
   export const classRepository = {

@@ -49,7 +49,7 @@ model Student {
   phone_responsible String
   img_student       String?
   qtd_faults        Int
-  class             Class        @relation(fields: [id_class], references: [id])
+  class             Class   @relation(fields: [id_class], references: [id], onDelete: Cascade)
   attendances       Attendance[]
   logbook           LogBook[]
 
@@ -65,7 +65,7 @@ model Attendance {
   send_notification Boolean  @default(false) // Indica se a notificação foi enviada
 
   // Relacionamentos
-  class   Class   @relation(fields: [id_class], references: [id])
+  class   Class   @relation(fields: [id_class], references: [id], onDelete: Cascade)
   student Student @relation(fields: [id_student], references: [id])
 
   @@map("attendances") // Nome correto da tabela no banco
