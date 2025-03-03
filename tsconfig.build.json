@@ -5,5 +5,9 @@
     "transform": {
       ".+\\.ts$": "ts-jest"
     },
+    "compilerOptions": {
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
     "testMatch": ["<rootDir>/tests/*.(test|spec).ts"]
 }           
