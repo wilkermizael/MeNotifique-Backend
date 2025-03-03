@@ -11,7 +11,14 @@ import * as path from "path";
 loadEnv();
 const app = express();
 app
-  .use(cors())
+.use(
+  cors({
+    origin: ["https://apimenotifique.winikii.com", "http://localhost:5173"], // Permita chamadas do frontend local e do domínio online
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+    credentials: true, // Permite cookies e autenticação
+  })
+)
   .use(express.json())
   .get("/health", (_req: Request, res:Response) => {res.send("I'm OK demais!")})
   .use("/users", usersRouter)
