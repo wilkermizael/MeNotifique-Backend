@@ -1,10 +1,11 @@
 import "express-async-errors";
-import express, { Express,Request, Response } from "express";
-import cors from "cors";
+import { Express,Request, Response } from "express";
+import express = require("express");
+import cors = require("cors");
 import { connectDb, disconnectDB, loadEnv } from "./config";
 import { attendanceRouter, bookRouter, classRouter, studentRouter, usersRouter } from "./routers";
 import { handleApplicationErrors } from "./middlewares";
-import path from 'path';
+import * as path from "path";
 
 
 loadEnv();

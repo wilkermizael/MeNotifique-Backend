@@ -1,13 +1,4 @@
 {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "moduleDirectories": ["node_modules", "src"],
-    "transform": {
-      ".+\\.ts$": "ts-jest"
-    },
-    "compilerOptions": {
-    "esModuleInterop": true,
-    "skipLibCheck": true
-  },
-    "testMatch": ["<rootDir>/tests/*.(test|spec).ts"]
-}           
+  "extends": "./tsconfig.json",
+  "exclude": ["tests"]
+}

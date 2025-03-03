@@ -1,5 +1,4 @@
-import exp from 'constants'
-
+import * as exp from 'constants'
 export * from './users-router'
 export  * from './class-router'
 export * from "./student-router"

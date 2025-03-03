@@ -1,19 +1,23 @@
 {
-    "compilerOptions": {
-      "outDir": "dist",
-      "esModuleInterop": true,
-      "module": "CommonJS",
-      "moduleResolution": "Node",
-      "baseUrl": ".",
-      "paths": {
-        "@/*": [
-          "./src/*"
-        ]
-      },
-      "typeRoots": ["./node_modules/@types", "./types"],
-      "types": ["node"]
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "outDir": "dist",
+    "noImplicitAny": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "rootDirs": ["src", "tests"],
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
     },
-    "ts-node": {
-      "esm": true
-    },
-  }
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths"
+      }
+    ]
+  },
+  "include": ["src", "tests"]
+}

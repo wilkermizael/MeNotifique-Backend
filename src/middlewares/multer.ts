@@ -1,6 +1,6 @@
-import multer from "multer";
-import path from "path";
+import * as path from "path";
 import { v4 as uuidv4 } from "uuid";
+import multer from "multer"; // Direct import, no need for .default
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

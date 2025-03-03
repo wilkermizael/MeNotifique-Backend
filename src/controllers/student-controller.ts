@@ -1,7 +1,7 @@
 
 import { cannotFindStudents } from '@/errors';
 import { NewStudentProtocols, StudentWhitoutId } from '@/protocols';
-import { studentService } from '@/services';
+import { studentService } from '../services/student-service';
 import { Request, Response, NextFunction } from 'express';
 import httpStatus from 'http-status';
 // Defina a interface para o corpo da requisição

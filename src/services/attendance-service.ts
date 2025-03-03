@@ -1,8 +1,7 @@
-import { createAttendance } from "@/controllers";
-import { Attendance, AttendanceWithoutId, PresentStudent } from "@/protocols";
-import { attendanceRepository, studentRepository } from "@/repositories";
-import { existAttendance, isMessageSend, sendFaults } from "@/utils";
-import { sendMessageWhatsApp } from "@/utils/send-message";
+
+import { PresentStudent } from "@/protocols";
+import { attendanceRepository} from "@/repositories";
+import { existAttendance, sendFaults, sendMessageWhatsApp } from "@/utils";
 import { Student } from "@prisma/client";
 import { AxiosResponse } from "axios";
 

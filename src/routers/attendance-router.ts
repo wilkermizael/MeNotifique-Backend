@@ -1,6 +1,6 @@
 
 import { Router } from "express";
-import { createAttendance, sendMessageController } from "@/controllers";
+import { createAttendance } from "@/controllers";
 
 const attendanceRouter = Router();
 

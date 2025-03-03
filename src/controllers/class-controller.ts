@@ -1,7 +1,7 @@
 
 import { cannotDelete } from '@/errors';
-import { CreateClass, CreateClassWihoutId } from '@/protocols';
-import { classService } from '@/services';
+import { CreateClassWihoutId } from '@/protocols';
+import { classService } from '../services/class-service';
 import { Request, Response, NextFunction } from 'express';
 import httpStatus from 'http-status';
 

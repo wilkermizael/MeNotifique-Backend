@@ -5,8 +5,8 @@ import {
     registerStudentController, 
     updateStudent,
     } from "@/controllers";
-import { validateBody } from "@/middlewares";
-import { createStudentSchema } from "@/schemas";
+//import { validateBody } from "@/middlewares";
+//import { createStudentSchema } from "@/schemas";
 import upload from "@/middlewares/multer";
 import { Router } from "express";
 

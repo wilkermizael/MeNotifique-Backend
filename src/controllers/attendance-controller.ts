@@ -1,7 +1,7 @@
-import { AttendanceWithoutId, PresentStudent } from '@/protocols';
+import { PresentStudent } from '@/protocols';
 import httpStatus from 'http-status';
 import { Request, Response, NextFunction } from 'express';
-import { attendanceService } from '@/services';
+import { attendanceService } from '../services/attendance-service';
 
 export async function createAttendance(
     req: Request,

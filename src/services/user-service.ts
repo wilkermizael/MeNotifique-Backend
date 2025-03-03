@@ -2,7 +2,7 @@
 import { duplicatedUserError, notFoundUser } from "@/errors";
 import { CreateClass, CreateUser, CreateUserParams } from "@/protocols";
 import { userRepository } from "@/repositories";
-import bcrypt from "bcryptjs";
+import * as bcrypt from "bcryptjs";
 
 
 export async function createUser({ user, password }: CreateUserParams): Promise<CreateUser> {

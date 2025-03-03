@@ -9,11 +9,13 @@ RUN npm install
 # Copiar o restante do código
 COPY . .
 
-# Gerar os arquivos TypeScript
-RUN npm run build
-
 # Gerar os arquivos necessários para o Prisma
 RUN npx prisma generate
+
+RUN npm install @prisma/client
+RUN npm install tsconfig-paths
+# Gerar os arquivos TypeScript
+RUN npm run build
 
 # Etapa final
 FROM node:18-alpine
@@ -26,4 +28,4 @@ COPY --from=builder /app ./
 EXPOSE 3000
 
 # Rodar as migrações do Prisma antes de iniciar o servidor
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/src/server.js"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node --require tsconfig-paths/register dist/server.js"]

@@ -1,5 +1,5 @@
 import { LogBookType } from "@/protocols";
-import { logBookService } from "@/services";
+import { logBookService } from '../services/logbook-service';
 import { NextFunction, Request, Response } from "express";
 import httpStatus from 'http-status';
 

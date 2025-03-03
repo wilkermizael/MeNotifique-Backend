@@ -2,9 +2,8 @@ import { prisma } from "@/config";
 import { NewStudentProtocols, StudentWhitoutId } from "@/protocols";
 import { studentRepository } from "@/repositories";
 import { Student } from "@prisma/client";
-import { AxiosResponse } from "axios";
-import path from "path";
-import fs from "fs";
+import * as path from "path";
+import * as fs from "fs";
 
 export async function createRegisterStudent(
   infoStudent: NewStudentProtocols,
