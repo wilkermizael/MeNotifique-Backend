@@ -25,7 +25,7 @@ WORKDIR /app
 COPY --from=builder /app ./
 
 # Expor a porta da API
-EXPOSE 3000
+EXPOSE 4000
 
 # Rodar as migrações do Prisma antes de iniciar o servidor
 CMD ["sh", "-c", "npx prisma migrate deploy && node --require tsconfig-paths/register dist/server.js"]

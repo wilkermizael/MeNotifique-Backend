@@ -1,5 +1,5 @@
 import "express-async-errors";
-import { Express,Request, Response } from "express";
+import { Express, Request, Response, NextFunction } from "express";
 import express = require("express");
 import cors = require("cors");
 import { connectDb, disconnectDB, loadEnv } from "./config";
@@ -11,14 +11,30 @@ import * as path from "path";
 loadEnv();
 const app = express();
 app
-.use(
-  cors({
-    origin: ["https://apimenotifique.winikii.com", "http://localhost:5173"], // Permita chamadas do frontend local e do domínio online
-    methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: "Content-Type,Authorization",
-    credentials: true, // Permite cookies e autenticação
-  })
-)
+.options("*", (req, res) => {
+  res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.sendStatus(204);
+})
+.use(cors({
+  origin: ["https://menotifique.winikii.com", "http://localhost:5173"],
+  methods: "GET,POST,PUT,DELETE,OPTIONS",
+  allowedHeaders: "Content-Type,Authorization",
+  credentials: true
+}))
+.options("*", (req, res) => {
+  res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.sendStatus(204);
+})
+.use((req, res, next) => {
+  console.log(`Recebida requisição ${req.method} para ${req.path}`);
+  next();
+})
   .use(express.json())
   .get("/health", (_req: Request, res:Response) => {res.send("I'm OK demais!")})
   .use("/users", usersRouter)
