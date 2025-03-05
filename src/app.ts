@@ -31,10 +31,6 @@ app
   res.header("Access-Control-Allow-Credentials", "true");
   res.sendStatus(204);
 })
-.use((req, res, next) => {
-  console.log(`Recebida requisição ${req.method} para ${req.path}`);
-  next();
-})
   .use(express.json())
   .get("/health", (_req: Request, res:Response) => {res.send("I'm OK demais!")})
   .use("/users", usersRouter)

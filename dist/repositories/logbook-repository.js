@@ -19,7 +19,28 @@ async function getLogBook(id) {
         where: { id_student: id }
     });
 }
+async function updateBook(infoLogbook, id) {
+    console.log(infoLogbook);
+    return config_1.prisma.logBook.update({
+        where: {
+            id: id,
+        },
+        data: {
+            note: infoLogbook.note,
+            demand: infoLogbook.demand,
+            date_note: infoLogbook.date_note,
+            profissional: infoLogbook.profissional,
+        },
+    });
+}
+async function deleteBook(id) {
+    return config_1.prisma.logBook.delete({
+        where: { id }
+    });
+}
 exports.logBookRepository = {
     createBook,
-    getLogBook
+    getLogBook,
+    updateBook,
+    deleteBook,
 };

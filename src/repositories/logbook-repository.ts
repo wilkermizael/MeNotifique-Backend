@@ -21,7 +21,34 @@ async function getLogBook(id:number){
         where: { id_student: id }
     })
 }
+
+async function updateBook(
+  infoLogbook: LogBookType,
+  id: number
+) {
+ 
+  return prisma.logBook.update({
+    where: {
+      id: id,
+    },
+    data: {
+      note: infoLogbook.note,
+      demand: infoLogbook.demand,
+      date_note: infoLogbook.date_note,
+      profissional: infoLogbook.profissional,
+    },
+  });
+}
+
+async function deleteBook(id:number){
+  return prisma.logBook.delete({
+      where: { id }
+  })
+}
+
 export const logBookRepository = {
     createBook,
-    getLogBook
+    getLogBook,
+    updateBook,
+    deleteBook,
 }

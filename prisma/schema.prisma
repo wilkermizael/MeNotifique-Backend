@@ -79,8 +79,8 @@ model LogBook {
   date_note    DateTime
   demand       String
   profissional String
-  class        Class    @relation(fields: [id_class], references: [id])
-  student      Student  @relation(fields: [id_student], references: [id])
+  class        Class    @relation(fields: [id_class], references: [id], onDelete: Cascade)
+  student      Student  @relation(fields: [id_student], references: [id], onDelete: Cascade)
 
   @@map("logbook")
 }

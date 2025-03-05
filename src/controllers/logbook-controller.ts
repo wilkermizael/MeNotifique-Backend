@@ -10,7 +10,6 @@ export async function registerLogBook(
   ) {
     try {
       const infoLogBook:LogBookType = req.body
-      console.log(infoLogBook) 
       const response = await logBookService.createBook(infoLogBook)
       res.status(httpStatus.CREATED).json({results:response});
     } catch (err) {
@@ -32,4 +31,33 @@ export async function getLogBook(
     } catch (error) {
         next(error);
     }
+}
+
+export async function updateLogBook(
+  req: Request<{"id":string}>, // Tipando o req.body corretamente
+  res: Response,
+  next: NextFunction
+) {
+  const id = Number(req.params.id)
+  try {
+    const infoLogBook:LogBookType = req.body
+    const response = await logBookService.updateBook(infoLogBook, id)
+    res.status(httpStatus.CREATED).json({results:response});
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function deleteLogBook(
+  req: Request<{"id":string}>, // Tipando o req.body corretamente
+  res: Response,
+  next: NextFunction
+) {
+  const id = Number(req.params.id)
+  try {
+    const response = await logBookService.deleteBook(id)
+    res.status(httpStatus.CREATED).json({results:response});
+  } catch (err) {
+    next(err);
+  }
 }

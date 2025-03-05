@@ -7,3 +7,5 @@ const bookRouter = (0, express_1.Router)();
 exports.bookRouter = bookRouter;
 bookRouter.post('/', controllers_1.registerLogBook);
 bookRouter.get('/:id', controllers_1.getLogBook);
+bookRouter.put('/update/:id', controllers_1.updateLogBook);
+bookRouter.delete('/delete/:id', controllers_1.deleteLogBook);
