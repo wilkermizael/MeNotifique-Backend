@@ -21,7 +21,13 @@ async function create(data: User) {
       data,
     });
   }
+  async function getUser() {
+    
+    const results = prisma.user.findMany();
+    console.log(results)
+    return results
+  }
 
   export const userRepository = {
-    create, findByUser
+    create, findByUser, getUser
   };

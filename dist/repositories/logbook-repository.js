@@ -20,7 +20,6 @@ async function getLogBook(id) {
     });
 }
 async function updateBook(infoLogbook, id) {
-    console.log(infoLogbook);
     return config_1.prisma.logBook.update({
         where: {
             id: id,

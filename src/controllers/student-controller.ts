@@ -16,7 +16,7 @@ export async function registerStudentController(
   next: NextFunction
 ) {
   try {
-    const infoStudent : StudentWhitoutId = req.body
+    const infoStudent : StudentWhitoutId[] = req.body
     const imgPath = req.file ? `/uploads/${req.file.filename}` : null;
     const response = await studentService.createRegisterStudent(infoStudent,imgPath );
     res.status(httpStatus.CREATED).json({results:response});
