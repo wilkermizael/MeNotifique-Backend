@@ -20,3 +20,5 @@ __exportStar(require("./class-controller"), exports);
 __exportStar(require("./student-controller"), exports);
 __exportStar(require("./attendance-controller"), exports);
 __exportStar(require("./logbook-controller"), exports);
+__exportStar(require("./users-delete-controller"), exports);
+__exportStar(require("./get-user-controller"), exports);

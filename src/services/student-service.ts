@@ -6,9 +6,9 @@ import * as path from "path";
 import * as fs from "fs";
 
 export async function createRegisterStudent(
-  infoStudent: NewStudentProtocols,
+  infoStudent: NewStudentProtocols[],
   imgPath: string
-): Promise<Student> {
+): Promise<{ count: number }> {
   const createClass = await studentRepository.createStudent(
     infoStudent,
     imgPath

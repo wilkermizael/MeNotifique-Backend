@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.userService = void 0;
 exports.createUser = createUser;
 exports.login = login;
+exports.getUser = getUser;
 const errors_1 = require("../errors");
 const repositories_1 = require("../repositories");
 const bcrypt = __importStar(require("bcryptjs"));
@@ -64,7 +65,12 @@ async function login({ user, password }) {
     }
     return existingUser;
 }
+async function getUser() {
+    const getuser = await repositories_1.userRepository.getUser();
+    return getuser;
+}
 exports.userService = {
     createUser,
     login,
+    getUser,
 };

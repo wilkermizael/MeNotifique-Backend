@@ -33,8 +33,12 @@ export async function login({user, password}:CreateUserParams): Promise<CreateUs
     return existingUser
 }
 
-
+export async function getUser():Promise<CreateUser[]>{
+  const getuser = await userRepository.getUser()
+  return getuser
+}
   export const userService = {
     createUser,
     login,
+    getUser,
   }

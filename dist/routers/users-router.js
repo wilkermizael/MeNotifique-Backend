@@ -10,3 +10,5 @@ const usersRouter = (0, express_1.Router)();
 exports.usersRouter = usersRouter;
 usersRouter.post('/register', (0, middlewares_1.validateBody)(users_schemas_1.createUserSchema), controllers_1.usersController);
 usersRouter.post('/login', (0, middlewares_1.validateBody)(users_schemas_1.createUserSchema), controllers_1.login);
+usersRouter.delete('/delete', (0, middlewares_1.validateBody)(users_schemas_1.createUserSchema), controllers_1.deleteUSer);
+usersRouter.get('/getuser', controllers_1.getUser);
